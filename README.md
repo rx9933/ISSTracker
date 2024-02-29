@@ -137,7 +137,7 @@ pytest
 Note: a different terminal (as long as it has Docker installed and has been navigated to the homework05 directory) can run the "pytest" command, as long as the docker image has been correctly pulled and is running (view "To Build Image").
 
 ## Contributions/Citations
-* Professor Joe Allen: on providing immediate help for all my questions.
+* Professor Joe Allen: on providing calculation help (math) for the seventh route (returning latitude, latitude, longitude, altitude, and geoposition for a specific epoch) and immediate help for all my questions.
 * ChatGPT: on writing this README.md.
 * [COE 332: Software and Engineering Design Read The Docs](https://coe-332-sp24.readthedocs.io/en/latest/unit05/containers_2.html): on usage (running the program with Linux commands)
 * [NASA ISS Website](https://spotthestation.nasa.gov/trajectory_data.cfm): on providing data.
