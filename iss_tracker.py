@@ -41,13 +41,13 @@ def return_comments()->List[dict]:
     return comments
 
 @app.route('/header', methods = ['GET'])
-def return_header():
+def return_header()->dict:
     all = get_data(True)
     header = all['ndm']['oem']['header']
     return header
 
 @app.route('/metadata', methods = ['GET'])
-def return_meta_data():
+def return_meta_data()->dict:
     all = get_data(True)
     metadata = all['ndm']['oem']['body']['segment']['metadata']
     return metadata
@@ -126,7 +126,7 @@ def return_specific_epoch_instspeed(epoch:str)->dict:
 
 '''
 @app.route('/epochs/<epoch>/location', methods=['GET'])
-def return_location(epoch:str):
+def return_location(epoch:str)->dict:
 '''    
 
 @app.route('/now', methods=['GET'])
