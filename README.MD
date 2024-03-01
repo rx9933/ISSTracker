@@ -31,6 +31,10 @@ To directly download the data: [Download NASA ISS XML Data](https://nasa-public-
 5. The start and stop dates of data collection are also provided. 
 
 ## Diagram
+A software diagram of the entire ecosystem is presented below:
+![plot](diagram.png)
+
+This image shows how the different programming files work together and how the user should interect with the app.
 
 ## Prerequisites
 Ensure that Docker is installed in system directory. View https://docs.docker.com/engine/install/ for more information.
