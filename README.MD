@@ -62,12 +62,12 @@ curl localhost:5000/header
 ```bash
 curl localhost:5000/metadata
 ```
-4. To return the entire data set:
+4. To return the entire data set (or modified list of Epochs given query parameters):
+For entire data set:
 ```bash
 curl localhost:5000/epochs
 ```
-
-5. To return the modified list of Epochs given query parameters:
+For restricted modified list of Epochs given query parameters:
 ```bash
 curl "localhost:5000/epochs?limit=<ANY INTEGER>&offset=<ANY INTEGER>"
 ```
@@ -89,12 +89,8 @@ Command example:
 ```bash
 curl localhost:5000/epochs?offset=3
 ```
-* With neither the limit or offset parameter provided, the program will return all the ISS data (view 1.)
-```bash
-curl localhost:5000/epochs
-```
 
-6. To return the data at a particular epoch:
+5. To return the data at a particular epoch:
 ```bash
 curl localhost:5000/epochs/<epoch>
 ```
@@ -105,7 +101,7 @@ curl localhost:5000/epochs/2024-074T23:46:00.000Z
 ```
 Ensure time stamp is in UTC time, and formatted as in the example. If "No data found at particular epoch." is output, the epoch may not be of correct format or data for that time may not exist (i.e, the ISS's location/speed has not been predicted for the specific timestamp, the ISS has long since passed that time point, or the time is beyond the predicted range for the ISS data).
 
-7. To return the ISS' instantaneous speed for a specific Epoch in the data set:
+6. To return the ISS' instantaneous speed for a specific Epoch in the data set:
 ```bash
 curl localhost:5000/epochs/<epoch>/speed
 ```
@@ -113,15 +109,15 @@ Command example:
 ```bash
 curl localhost:5000/epochs/2024-053T23:12:00.000Z/speed
 ```
-As above in 6., replace "epoch" with desired time stamp (follow format in 3.). If the message "No data found at particular epoch. Cannot calculate instantaneous speed." appears, the limitations as described in 3. are likely the cause of the issue.
+As above in 5., replace "epoch" with desired time stamp (follow format in 3.). If the message "No data found at particular epoch. Cannot calculate instantaneous speed." appears, the limitations as described in 3. are likely the cause of the issue.
 
-8. To return the latitude, longitude, altitude, and geoposition for a specific epoch:
+7. To return the latitude, longitude, altitude, and geoposition for a specific epoch:
 ```bash
 curl localhost:5000/epochs/<epoch>/location
 ```
-As above in 6. and 7., replace "epoch" with desired time stamp (follow format in 3.). If the message "No data found at particular epoch. Cannot calculate instantaneous speed." appears, the limitations as described in 3. are likely the cause of the issue.
+As above in 5. and 6., replace "epoch" with desired time stamp (follow format in 3.). If the message "No data found at particular epoch. Cannot calculate instantaneous speed." appears, the limitations as described in 3. are likely the cause of the issue.
 
-9. To return the instantaneous speed, latitude, longitude, altitude, and geoposition for the Epoch that is nearest to the current UTC time:
+8. To return the instantaneous speed, latitude, longitude, altitude, and geoposition for the Epoch that is nearest to the current UTC time:
 ```bash
 curl localhost:5000/now
 ```
