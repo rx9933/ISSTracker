@@ -3,7 +3,7 @@
 This project analyzes the International Space Station's position and velocity based on data provided by NASA. The program supports Flask and Docker, and returns general information about the ISS and specific parameters about the ISS's location/speed at different time points. 
 
 ## Table of Contents:
-1. Folder Contents (# ## Folder Contents)
+1. Folder Contents (# Folder Contents)
 2. Data Source
 3. Diagram
 4. Prerequisites
