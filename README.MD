@@ -121,6 +121,11 @@ curl localhost:5000/now
 
 
 ### Unit Testing
+1. Follow "To Build Image", then, in the same directory as the ISS-Tracker repository, run the following command:
+```bash
+pytest
+```
+Note: a different terminal (as long as it has Docker installed and has been navigated to the homework05 directory) can run the "pytest" command, as long as the docker image has been correctly pulled and is running (view "To Build Image").
 
 ## Contributions/Citations
 * Professor Joe Allen: on providing immediate help for all my questions.
