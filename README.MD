@@ -3,12 +3,12 @@
 This project analyzes the International Space Station's position and velocity based on data provided by NASA. The program supports Flask and Docker, and returns general information about the ISS and specific parameters about the ISS's location/speed at different time points. 
 
 ## Table of Contents:
-1. [Folder Contents](#folder-contents) 
-2. [Data Source] (#data-source)
-3. [Diagram] (#diagram)
-4. [Prerequisites] (# prerequisites)
-5. [Running Program] (# running-program)
-6. [Contributions/Citations] (#contributions/citations)
+1. [Folder Contents](#folder-contents)
+2. [Data Source](#data-source)
+3. [Diagram](#diagram)
+4. [Prerequisites](#prerequisites)
+5. [Running Program](#running-program)
+6. [Contributions/Citations](#contributionscitations)
 
 ## Folder Contents:
 1. "iss_tracker.py": code that requests data about the ISS's position/velocity based on user's flask commands.
