@@ -4,11 +4,11 @@ This project analyzes the International Space Station's position and velocity ba
 
 ## Table of Contents:
 1. [Folder Contents](#folder-contents) 
-2. Data Source
-3. Diagram
-4. Prerequisites
-5. Running Program
-6. Citations
+2. [Data Source] (#data-source)
+3. [Diagram] (#diagram)
+4. [Prerequisites] (# prerequisites)
+5. [Running Program] (# running-program)
+6. [Contributions/Citations] (#contributions/citations)
 
 ## Folder Contents:
 1. "iss_tracker.py": code that requests data about the ISS's position/velocity based on user's flask commands.
@@ -29,3 +29,13 @@ To directly download the data: [Download NASA ISS XML Data](https://nasa-public-
 3. Positional and velocity data is recorded in kilometers (km) and kilometers per second (km/s). 
 4. Various statistics about the ISS are also provided (i.e, the mass of the ISS, drag area, drag coefficient, etc.)
 5. The start and stop dates of data collection are also provided. 
+
+## Diagram
+## Prerequisites
+## Running Program
+
+# Contributions/Citations
+* Professor Joe Allen: on providing immediate help for all my questions.
+* ChatGPT: on writing this README.md.
+* [COE 332: Software and Engineering Design Read The Docs](https://coe-332-sp24.readthedocs.io/en/latest/unit05/containers_2.html): on usage (running the program with Linux commands)
+* [NASA ISS Website](https://spotthestation.nasa.gov/trajectory_data.cfm): on providing data.
