@@ -51,8 +51,17 @@ docker run --name "iss-app" -d -p 5000:5000 rx9933/iss_app:midterm
 ### Making Requests to Container
 Note: Proceed only if "Running Container" is completed. Run the following commands in the same (or a different terminal that satisfies the [Prerequisites](#prerequisites))
 1. To return comments in ISS data set:
+```bash
+curl localhost:5000/comment
+```
 2. To return header in ISS data set:
+```bash
+curl localhost:5000/header
+```
 3. To return metadata in the ISS data set (general information about the ISS):
+```bash
+curl localhost:5000/metadata
+```
 4. To return the entire data set:
 ```bash
 curl localhost:5000/epochs
