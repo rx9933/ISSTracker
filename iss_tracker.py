@@ -15,7 +15,7 @@ def get_data(alldata=False)->List[dict]:
     Args:
         None
     Returns:
-    epoch_data (dict): a dictionary of all the ISS position/velocity/time data.
+        epoch_data (dict): a dictionary of all the ISS position/velocity/time data.
     """
     response = requests.get("https://nasa-public-data.s3.amazonaws.com/iss-coords/current/ISS_OEM/ISS\
 .OEM_J2K_EPH.xml")
@@ -36,23 +36,42 @@ def get_data(alldata=False)->List[dict]:
 
 @app.route('/comment', methods = ['GET'])
 def return_comments()->List[dict]:
+    """
+    Function returns the comments written in the ISS data file. 
+    Args: 
+        None
+    Returns:
+        comments (list of dicts): a list of all the comments written, where each new line is written as a new dictionary.
+    """
     all = get_data(True)
     comments = all['ndm']['oem']['body']['segment']['data']['COMMENT']
     return comments
 
 @app.route('/header', methods = ['GET'])
 def return_header()->dict:
+    """
+    Function returns the header written in the ISS data file:
+    Args:
+        None
+    Returns:
+        header (dict): dictionary of all items in the header. Each new line is a different key/val pair.
+    """
     all = get_data(True)
     header = all['ndm']['oem']['header']
     return header
 
 @app.route('/metadata', methods = ['GET'])
 def return_meta_data()->dict:
+    """
+    Function returns the metadata about the ISS (written in the ISS data file) (has comments about ISS generally).
+    Args:
+        None
+    Returns:
+        metadata (dict): dictionary with information about the ISS's name, the time reference used, etc.
+    """
     all = get_data(True)
     metadata = all['ndm']['oem']['body']['segment']['metadata']
     return metadata
-
-
 
 @app.route('/epochs', methods = ['GET'])
 def return_entire_dataset()->List[dict]:
@@ -61,7 +80,7 @@ def return_entire_dataset()->List[dict]:
     Args:
         None
     Returns:
-    data_dict (dict): a dictionary of all the ISS position/velocity/time data.
+        data_dict (dict): a dictionary of all the ISS position/velocity/time data.
     """
     all_epochs = get_data()
     num_epochs = len(all_epochs)
@@ -83,8 +102,6 @@ def return_entire_dataset()->List[dict]:
         return "No ISS data for given restrictions\n"
 
     list_of_dicts = all_epochs[offset: offset+limit]
-#    result_dict = {f"data number {i}": item for i, item in enumerate(list_of_dicts)}
-#    return result_dict
     return list_of_dicts
 
 @app.route('/epochs/<epoch>', methods = ['GET'])
@@ -127,6 +144,7 @@ def return_specific_epoch_instspeed(epoch:str)->dict:
 '''
 @app.route('/epochs/<epoch>/location', methods=['GET'])
 def return_location(epoch:str)->dict:
+
 '''    
 
 @app.route('/now', methods=['GET'])
