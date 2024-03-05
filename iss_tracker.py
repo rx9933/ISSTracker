@@ -6,9 +6,25 @@ from typing import List
 from flask import Flask, request
 import logging
 import requests
+import math
+
+
+from geopy.geocoders import Nominatim
+geocoder = Nominatim(user_agent='iss_tracker')
+
 logging.basicConfig(level=logging.WARNING)
+MEAN_EARTH_RADIUS = 6378.137 # in kilometers
 
 app = Flask(__name__)
+
+@app.route('/', methods = ['GET'])
+def keep_active():
+   t = True
+   r = 1
+   while t:
+      r +=1
+   return r
+
 def get_data(alldata=False)->List[dict]:
     """
     Function gets and returns all of the ISS epoch data set.
@@ -141,11 +157,39 @@ def return_specific_epoch_instspeed(epoch:str)->dict:
     return_V_dict = {"instantaneous speed": v, "speed units" : specific_epoch["X_DOT"]["@units"]}
     return return_V_dict
 
-'''
+
 @app.route('/epochs/<epoch>/location', methods=['GET'])
 def return_location(epoch:str)->dict:
+   """
+   Function returns the latitude, longitude, altitude, and geoposition (which city the ISS is traveling over) for a given epoch/timestamp.
+   Args:
+       epoch (str): epoch string in UTC time, i.e. 2024-053T23:44:00.000Z (must be of t\
+his format). 
+   Returns:
+       geodata (dictionary): contains the iss's position (x,y,z coordinates), the geodata (latitude, longitude, altitude, and gelocation), and the timestamp (particular input epoch).
+   """
+   epoch_data= return_specific_epoch_data(epoch)
+   try:
+      x = float(epoch_data["X"]["#text"])
+   except:
+      return "wrong input type/date \n"
+   y = float(epoch_data["Y"]["#text"])
+   z = float(epoch_data["Z"]["#text"])
+   lat = math.degrees(math.atan2(z, math.sqrt(x**2 + y**2)))
+   alt = math.sqrt(x**2 + y**2 + z**2) - MEAN_EARTH_RADIUS
+   
+   date_part, time_part = epoch.split("T")
+   hrs, mins, _ = time_part.split(":")
+   lon = math.degrees(math.atan2(y, x)) - ((float(hrs)-12)+(float(mins)/60))*(360/24) + 19
+   if lon > 180: lon = -180 + (lon - 180)
+   if lon < -180: lon = 180 + (lon + 180)
 
-'''    
+    
+   geoloc = geocoder.reverse((lat, lon), zoom=15, language='en')
+    
+   geo_data={"iss_position": {"x":x, "y":y, "z":z}, "geodata":{"latitude": lat, "longitude" : lon, "altitude":alt, "geolocation/city": str(geoloc)}, "timestamp":epoch}
+   return geo_data
+    
 
 @app.route('/now', methods=['GET'])
 def closest_epoch()->dict:
@@ -169,7 +213,7 @@ def closest_epoch()->dict:
             closest_ind = ind
             max_time_diff = abs(time_diff_s)
         ind +=1
-    return_vectors_speed = epoch_data[closest_ind]
+#    return_vectors_speed = epoch_data[closest_ind]
     closest_data = epoch_data[closest_ind]
 
     vx = float(closest_data["X_DOT"]["#text"])
@@ -177,9 +221,12 @@ def closest_epoch()->dict:
     vz = float(closest_data["Z_DOT"]["#text"])
     v = (vx**2 + vy**2 + vz**2) ** 0.5
     return_V_dict = {"instantaneous speed": v, "speed units" : closest_data["X_DOT"]["@units"]}
-    return_vectors_speed.update(return_V_dict)
 
-    return return_vectors_speed
+    geo_data = return_location(closest_data["EPOCH"])
+
+    return_V_dict.update(geo_data)
+    return_V_dict.update({"position units": "km"})
+    return return_V_dict
 
 
 def time_diff_calc(other_time:str, now_time:str)->float:
