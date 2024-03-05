@@ -99,23 +99,60 @@ def test_specific_epoch_data_and_instspeed():
 
     assert(cleaned_dictionary["instantaneous speed"] >= 0)
 
+
+
+def test_return_location():
+    cleaned_dictionary = request_data('http://127.0.0.1:5000/epochs')
+    an_epoch = cleaned_dictionary[100]["EPOCH"]
+
+
+    cleaned_dictionary = request_data(f'http://127.0.0.1:5000/epochs/{an_epoch}/location')
+
+    should_have_keys = ['geodata', 'iss_position','timestamp']
+    assert(list(cleaned_dictionary.keys()) == should_have_keys)
+
+    assert(list(cleaned_dictionary["iss_position"].keys()) == ["x", "y", "z"])
+    assert(isinstance(cleaned_dictionary["iss_position"]["x"],float))
+    assert(isinstance(cleaned_dictionary["iss_position"]["y"],float))
+    assert(isinstance(cleaned_dictionary["iss_position"]["z"],float))
+    
+    assert(list(cleaned_dictionary["geodata"].keys()) == ["altitude", "geolocation/city", "latitude", "longitude"])
+    assert(isinstance(cleaned_dictionary["geodata"]["latitude"],float))
+    assert(isinstance(cleaned_dictionary["geodata"]["longitude"],float))
+    assert(isinstance(cleaned_dictionary["geodata"]["altitude"],float))
+    assert(isinstance(cleaned_dictionary["geodata"]["geolocation/city"],str))
+
+    
+    assert(isinstance(cleaned_dictionary["timestamp"],str))
+
+
 def test_closest_epoch():
-    keys_equal = ['EPOCH', 'X', 'X_DOT', 'Y', 'Y_DOT', 'Z', 'Z_DOT','instantaneous speed', 'speed units']
+    keys_equal = ['geodata', 'instantaneous speed', 'iss_position', 'position units', 'speed units', 'timestamp']
     cleaned_dictionary = request_data(f'http://127.0.0.1:5000/now')
     assert(list(cleaned_dictionary.keys()) == keys_equal)
-    
-    units_equal = 'km/s'
-    assert(cleaned_dictionary["speed units"] == units_equal)
+
+    assert(list(cleaned_dictionary["geodata"].keys())==["altitude","geolocation/city","latitude","longitude"])
+    assert(isinstance(cleaned_dictionary["geodata"]["altitude"],float))
+    assert(isinstance(cleaned_dictionary["geodata"]["geolocation/city"],str))
+    assert(isinstance(cleaned_dictionary["geodata"]["latitude"],float))
+    assert(isinstance(cleaned_dictionary["geodata"]["longitude"],float))
+
+
     assert(cleaned_dictionary["instantaneous speed"] >= 0)
 
-    for key, value in cleaned_dictionary.items():
-        if key != "EPOCH" and key != "speed units" and key != "instantaneous speed":
-            try:
-                # Extract the value from the "#text" field and convert it to a float
-                float_value = float(value["#text"])
-                assert isinstance(float_value, float), f"Value for key '{key}' is not a float."
-            except (KeyError, ValueError):
-                raise AssertionError(f"Invalid value for key '{key}': {value}")
+    assert(list(cleaned_dictionary["iss_position"].keys())==["x","y","z"])
+    assert(isinstance(cleaned_dictionary["iss_position"]["x"],float))
+    assert(isinstance(cleaned_dictionary["iss_position"]["y"],float))
+    assert(isinstance(cleaned_dictionary["iss_position"]["z"],float))
+    
+    pos_units_equal = 'km'
+    speed_units_equal = "km/s"
+    
+    assert(cleaned_dictionary["position units"] == pos_units_equal)
+    assert(cleaned_dictionary["speed units"] == speed_units_equal)
+    assert(isinstance(cleaned_dictionary["timestamp"],str))
+
+    
 
 def test_time_diff_calc():
     other_time = "2024-059T00:00:00.000Z"
