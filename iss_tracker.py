@@ -17,14 +17,6 @@ MEAN_EARTH_RADIUS = 6378.137 # in kilometers
 
 app = Flask(__name__)
 
-@app.route('/', methods = ['GET'])
-def keep_active():
-   t = True
-   r = 1
-   while t:
-      r +=1
-   return r
-
 def get_data(alldata=False)->List[dict]:
     """
     Function gets and returns all of the ISS epoch data set.
