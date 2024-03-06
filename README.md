@@ -75,7 +75,7 @@ For restricted modified list of Epochs given query parameters:
 ```bash
 curl "localhost:5000/epochs?limit=<ANY INTEGER>&offset=<ANY INTEGER>"
 ```
-Note: limit is the maximum number of data points returned and offset is offset from the starting data point (begin returning ISS data points after <offset> number of data points).In place of "<ANY INTEGER>" input appropriate limit and/or offset values (integers).
+Note: limit is the maximum number of data points returned and offset is offset from the starting data point (begin returning ISS data points after <offset> number of data points).In place of "ANY INTEGER" input appropriate limit and/or offset values (integers).
 Limit and offset are optional parameters (input both, one, or neither of the options).
 * With the limit and offset parameters, the program will return the <limit> number of data points beginning after the <offset> number of data points.
 Command example:
