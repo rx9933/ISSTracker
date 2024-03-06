@@ -54,7 +54,7 @@ docker run --name "iss-app" -d -p 5000:5000 rx9933/iss_app:midterm
 
 ### Making Requests to Container
 Note: Proceed only if "Running Container" is completed. Run the following commands in the same (or a different terminal that satisfies the [Prerequisites](#prerequisites))
-Debug help (for curl commands is shown [here](#debug-help).
+For debugging curl commands, see [Debug help](#debug-help).
 1. To return comments in ISS data set:
 ```bash
 curl localhost:5000/comment
