@@ -54,6 +54,7 @@ docker run --name "iss-app" -d -p 5000:5000 rx9933/iss_app:midterm
 
 ### Making Requests to Container
 Note: Proceed only if "Running Container" is completed. Run the following commands in the same (or a different terminal that satisfies the [Prerequisites](#prerequisites))
+Debug help (for curl commands is shown [here](#debug-help).
 1. To return comments in ISS data set:
 ```bash
 curl localhost:5000/comment
@@ -128,7 +129,12 @@ Note: geolocation represents the city above which the ISS is traveling. When the
 curl localhost:5000/now
 ```
 As above in 7., if the ISS is currently above an ocean, the geolocation/city will be returned as None.
-
+#### Debug Curl Requests
+<!doctype html>
+<html lang=en>
+<title>404 Not Found</title>
+<h1>Not Found</h1>
+<p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
 
 ### Unit Testing
 1. Follow "To Build Image", then, in the same directory as the ISS-Tracker repository, run the following command:
