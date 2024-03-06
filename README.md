@@ -131,11 +131,21 @@ curl localhost:5000/now
 ```
 As above in 7., if the ISS is currently above an ocean, the geolocation/city will be returned as None.
 #### Debug Curl Requests
+If the following error is shown:
+```bash
+curl: (7) Failed to connect to localhost port 5000 after 0 ms: Connection refused
+```
+The app is not running. See [Running Container](#running-container) for help on running app. Try using the curl commands _after_ the app is up and running.
+
+If the following error is shown:
+```bash
 <!doctype html>
 <html lang=en>
 <title>404 Not Found</title>
 <h1>Not Found</h1>
 <p>The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.</p>
+```
+The curl command does not follow appropriate formatting. Recheck spelling/grammar and check the example commands shown in this README.md file.
 
 ### Unit Testing
 1. Follow "To Build Image", then, in the same directory as the ISS-Tracker repository, run the following command:
