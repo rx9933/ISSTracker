@@ -82,7 +82,8 @@ Command example:
 ```bash
 curl "localhost:5000/epochs?limit=2&offset=200"
 ```
-Note the quotation marks when inputting two arguments.
+Note the quotation marks when inputting two arguments. If two arguments/query parameters are provided without being surrounded in quotes (as shown in above command), the program will only consider the first parameter. Additionally, after returning the data section, the program will continue running, rather than moving on to an empty new line. Use command CTRL+C to exit, and instead use the quotations in curl command for desired output.
+
 * With just a limit parameter, the program will return the <limit> number of data points beginning at the start of the ISS data
 Command example:
 ```bash
