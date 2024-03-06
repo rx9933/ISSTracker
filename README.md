@@ -120,13 +120,13 @@ As above in 5., replace "epoch" with desired time stamp (follow format in 3.). I
 curl localhost:5000/epochs/<epoch>/location
 ```
 As above in 5. and 6., replace "epoch" with desired time stamp (follow format in 3.). If the message "No data found at particular epoch. Cannot calculate instantaneous speed." appears, the limitations as described in 3. are likely the cause of the issue.
+Note: geolocation represents the city above which the ISS is traveling. When the ISS is not above land (above an ocean), the program will return "geolocation/city: None".
 
 8. To return the instantaneous speed, latitude, longitude, altitude, and geoposition for the Epoch that is nearest to the current UTC time:
 ```bash
 curl localhost:5000/now
 ```
-
-
+As above in 7., if the ISS is currently above an ocean, the geolocation/city will be returned as None.
 
 
 ### Unit Testing
@@ -134,7 +134,7 @@ curl localhost:5000/now
 ```bash
 pytest
 ```
-Note: a different terminal (as long as it has Docker installed and has been navigated to the homework05 directory) can run the "pytest" command, as long as the docker image has been correctly pulled and is running (view "To Build Image").
+Note: a different terminal (as long as it has Docker installed and has been navigated to the ISS-Tracker directory) can run the "pytest" command, as long as the docker image has been correctly pulled and is running (view "To Build Image").
 
 ## Contributions/Citations
 * Professor Joe Allen: on providing calculation help (math) for the seventh route (returning latitude, latitude, longitude, altitude, and geoposition for a specific epoch) and immediate help for all my questions.
