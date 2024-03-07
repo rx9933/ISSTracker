@@ -43,13 +43,42 @@ For unit testing purposes, git clone this repository (ISS-Tracker) and navigate 
 ## Running App
 ### Running Container
 Enter the following commands in terminal (that satisfies specified [Prerequisites](#prerequisites)).
-1. To pull image (from Dockerhub):
+Method 1: from Dockerhub
+1. To pull image:
 ```bash
 docker pull rx9933/iss_app:midterm
 ```
 2. To run Docker container:
 ```bash
 docker run --name "iss-app" -d -p 5000:5000 rx9933/iss_app:midterm
+```
+Leave program running while proceeding with Making Requests to Container. Only use "To stop/remove Docker container" when done interacting with app.
+3. To stop/remove Docker container:
+* To reveal container id:
+```bash
+docker ps -a
+`` 
+* To stop container from running:
+```bash
+docker stop <ID from previous command>
+```
+replace "ID from previous command" with the value returned after performing the docker ps command.
+* To remove the container:
+```bash
+docker rm <ID from previous docker ps command>
+```
+replace "ID from previous command" with the value returned after performing the docker ps command.
+
+Method 2: with Docker-compose
+1. Clone this repository and navigate to this directory. 
+2. To run program:
+```bash
+docker-compose up -d
+```
+Leave program running while proceeding with Making Requests to Container. Only use "To stop program" when done interacting with app.
+3. To stop program:
+```bash
+docker-compose down
 ```
 
 ### Making Requests to Container
@@ -152,7 +181,7 @@ The curl command does not follow appropriate formatting. Recheck spelling/gramma
 ```bash
 pytest
 ```
-Note: a different terminal (as long as it has Docker installed and has been navigated to the ISS-Tracker directory) can run the "pytest" command, as long as the docker image has been correctly pulled and is running (view "To Build Image").
+Note: a different terminal (as long as it has Docker installed and has been navigated to the ISS-Tracker directory) can run the "pytest" command, as long as the app is correctly running (view "To Build Image").
 
 ## Contributions/Citations
 * Professor Joe Allen: on providing calculation help (math) for the seventh route (returning latitude, latitude, longitude, altitude, and geoposition for a specific epoch) and immediate help for all my questions.
