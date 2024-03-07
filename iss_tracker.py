@@ -178,8 +178,12 @@ his format).
 
     
    geoloc = geocoder.reverse((lat, lon), zoom=15, language='en')
-    
-   geo_data={"iss_position": {"x":x, "y":y, "z":z}, "geodata":{"latitude": lat, "longitude" : lon, "altitude":alt, "geolocation/city": str(geoloc)}, "timestamp":epoch}
+   strloc = str(geoloc)
+   
+   if strloc=="None":
+       strloc = "no city/position found - perhaps over ocean"
+
+   geo_data={"iss_position": {"x":x, "y":y, "z":z}, "geodata":{"latitude": lat, "longitude" : lon, "altitude":alt, "geolocation/city": strloc}, "timestamp":epoch}
    return geo_data
     
 
@@ -215,7 +219,7 @@ def closest_epoch()->dict:
     return_V_dict = {"instantaneous speed": v, "speed units" : closest_data["X_DOT"]["@units"]}
 
     geo_data = return_location(closest_data["EPOCH"])
-
+    
     return_V_dict.update(geo_data)
     return_V_dict.update({"position units": "km"})
     return return_V_dict
