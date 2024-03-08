@@ -1,4 +1,6 @@
-from iss_tracker import time_diff_calc # does not have flask acess
+
+from ISSTracker.iss_tracker import time_diff_calc # does not have flask acess
+import importlib
 from datetime import datetime, timedelta
 import requests
 import json
