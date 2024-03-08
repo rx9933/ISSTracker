@@ -3,7 +3,7 @@
 This project analyzes the International Space Station's position and velocity based on data provided by NASA. The program supports Flask and Docker, and returns general information about the ISS and specific parameters about the ISS's location/speed at different time points. 
 
 ## Table of Contents:
-1. [Folder Contents](#folder-contents): description of files in this ISS-Tracker repository.
+1. [Folder Contents](#folder-contents): description of files in this ISSTracker repository.
 2. [Data Source](#data-source): data of ISS location/position.
 3. [Diagram](#diagram): program diagram.
 4. [Prerequisites](#prerequisites): requirements to run program.
@@ -39,7 +39,7 @@ This image shows how the different programming files work together and how the u
 ## Prerequisites
 Ensure that Docker is installed in system directory. View https://docs.docker.com/engine/install/ for more information.
 
-For unit testing purposes, git clone this repository (ISS-Tracker) and navigate to this directory. Then proceed with [Running App](#running-app)(next steps). 
+For unit testing purposes, git clone this repository (ISSTracker) and navigate to this directory. Then proceed with [Running App](#running-app)(next steps). 
 ## Running App
 ### Running Container
 Enter the following commands in terminal (that satisfies specified [Prerequisites](#prerequisites)).
@@ -177,11 +177,23 @@ If the following error is shown:
 The curl command does not follow appropriate formatting. Recheck spelling/grammar and check the example commands shown in this README.md file.
 
 ### Unit Testing
-1. Follow "To Build Image", then, in the same directory as the ISS-Tracker repository, run the following command:
+1. Follow "To Build Image", then, in the same directory as the ISSTracker repository, navigate_ into the test folder_ then run the following command:
 ```bash
 pytest
 ```
-Note: a different terminal (as long as it has Docker installed and has been navigated to the ISS-Tracker directory) can run the "pytest" command, as long as the app is correctly running (view "To Build Image").
+Or (using docker to test code):
+1. Follow "To Build Image" then to get the running container's id, use:
+```bash
+docker ps -a
+```
+
+2. Then to execute the pytest command: 
+```bash
+docker exec -it <"container id"> pytest
+```
+Make sure to replace "container id" with the value returned in step 1.
+
+Note: a different terminal (as long as it has Docker installed and has been navigated to the ISSTracker/test directory) can run the "pytest" command, as long as the app is correctly running (view "To Build Image").
 
 ## Contributions/Citations
 * Professor Joe Allen: on providing calculation help (math) for the seventh route (returning latitude, latitude, longitude, altitude, and geoposition for a specific epoch) and immediate help for all my questions.
