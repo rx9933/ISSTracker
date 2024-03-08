@@ -178,7 +178,7 @@ If the following error is shown:
 The curl command does not follow appropriate formatting. Recheck spelling/grammar and check the example commands shown in this README.md file.
 
 ### Unit Testing
-1. Follow "To Build Image", then, in the same directory as the ISSTracker repository, navigate_ into the test folder_ then run the following command:
+1. Follow "To Build Image", then, in the same directory as the ISSTracker repository, then run the following command:
 ```bash
 pytest
 ```
