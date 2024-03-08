@@ -57,7 +57,7 @@ Leave program running while proceeding with Making Requests to Container. Only u
 * To reveal container id:
 ```bash
 docker ps -a
-`` 
+```
 * To stop container from running:
 ```bash
 docker stop <ID from previous command>
