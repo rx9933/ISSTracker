@@ -1,0 +1,17 @@
+---
+version: "3"
+
+services:
+    flask-app:
+        build:
+            context: ./
+            dockerfile: ./Dockerfile
+        image: rx9933/iss_app:midterm
+        container_name: iss_app
+        ports:
+            - "5000:5000"
+
+
+
+
+
