@@ -1,12 +1,10 @@
 FROM python:3.9
 
-RUN mkdir /app
-WORKDIR /app
-COPY requirements.txt /app/requirements.txt
-COPY test_iss_tracker.py /app/test_iss_tracker.py
+RUN mkdir /ISSTracker
+WORKDIR /ISSTracker
 
-COPY . /app
-RUN pip install -r /app/requirements.txt
+COPY . /ISSTracker
+RUN pip install -r /ISSTracker/requirements.txt
 
 ENTRYPOINT ["python3"]
 CMD ["iss_tracker.py"]
