@@ -43,6 +43,7 @@ For unit testing purposes, git clone this repository (ISSTracker) and navigate t
 ## Running App
 ### Running Container
 Enter the following commands in terminal (that satisfies specified [Prerequisites](#prerequisites)).
+
 Method 1: from Dockerhub
 1. To pull image:
 ```bash
